@@ -198,7 +198,7 @@ public class Executor {
     public void ImprimirTabelaSimbolosPrograma(){
         //A parte final, na qual vc imprime todas as entradas da Tabela de Simbolos do programa, após o processamento.
         //abrir o hashmap
-
+        System.out.println("\n##### Tabela de Simbolos do Programa: #####\n");
         for (Token t : tabelaSimbolosPrograma.values()) {
             System.out.println(t);
         }

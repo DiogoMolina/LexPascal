@@ -65,7 +65,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return "-----Token= " + token + ", Lexema= " + lexema + ", Tipo= " + tipo + ", Descricao= " + descricao
+        return "--Token= " + token + ", Lexema= " + lexema + ", Tipo= " + tipo + ", Descricao= " + descricao
                 + ", Endereco= " + endereco + "\n";
     }
 }

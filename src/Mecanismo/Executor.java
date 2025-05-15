@@ -171,12 +171,14 @@ public class Executor {
             end++;
             Token token = new Token();
 
-            if (tabelaLinguagem.getTabela().containsKey(texto)) { //verifica na tabela linguagem se contem a palavra chave
-                token = tabelaLinguagem.getTabela().get(texto); //verificou na tabela ent ele busca qual a keyword
+            if (tabelaLinguagem.getTabela().containsKey(texto.toLowerCase())) { //verifica na tabela linguagem se contem a palavra chave
+                String chave = texto.toUpperCase();
+                token = tabelaLinguagem.getTabela().get(texto.toLowerCase()); //verificou na tabela ent ele busca qual a keyword
+                token.setToken(texto.toUpperCase());
+                this.tabelaSimbolosPrograma.put(chave, token);
             }
             else if (IsNumber(texto)) { //se ela for numero cria esse token
                 token = new Token("<" + texto + ", NUM>", texto, "Numero", texto, end);
-                tabelaSimbolosPrograma.put(texto, token);
             }
             else if (IsLiteral(texto)) { //se ela for literal cria esse token
                 token = new Token("<" + texto + ", LIT>", texto, "Literal", texto, end);
@@ -186,11 +188,11 @@ public class Executor {
             }
             else if (IsIdentifier(texto)) { // se for id cria esse
                 token = new Token("<" + texto + ", ID>", texto, "Identificador", texto, end);
+            } else {
+                token = new Token(texto, texto, tabelaLinguagem.getUndefined(), texto, end);
             }
 
-            if (!this.tabelaSimbolosPrograma.containsKey(texto)) { //verifica se não contem a palavra chave na MINHA tabela, então cria usando os tokens criados antes
-                this.tabelaSimbolosPrograma.put(texto, token);
-            }
+            this.tabelaSimbolosPrograma.put(texto, token);
 
         }
     }
